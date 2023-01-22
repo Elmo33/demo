@@ -49,9 +49,10 @@ public class MySQLDatabase {
     }
     public void deleteFlight(int id) {
         try {
-            PreparedStatement pst = con.prepareStatement("DELETE FROM flights WHERE id = ?");
+            PreparedStatement pst = con.prepareStatement("DELETE FROM flights WHERE flight_id = ?");
             pst.setInt(1, id);
             pst.executeUpdate();
+            System.out.println("Test");
         } catch (SQLException e) {
             e.printStackTrace();
         }

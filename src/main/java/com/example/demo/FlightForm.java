@@ -48,11 +48,24 @@ public class FlightForm extends Application {
         submitRow.getChildren().add(submitButton);
         root.getChildren().add(submitRow);
 
+        HBox idRow = new HBox();
+        idRow.setSpacing(10);
+        Label idLabel = new Label("ID:");
+        TextField idField = new TextField();
+        idRow.getChildren().addAll(idLabel, idField);
+        root.getChildren().add(idRow);
+
+        HBox deleteRow = new HBox();
+        submitRow.setSpacing(10);
+        Button deleteButton = new Button("Delete");
+        deleteRow.getChildren().add(deleteButton);
+        root.getChildren().add(deleteButton);
+
         Scene scene = new Scene(root, 600, 400);
         primaryStage.setTitle("Flight Form");
         primaryStage.setScene(scene);
         primaryStage.show();
-        FlightFormController controller = new FlightFormController(destinationField, flightDatePicker, numSeatsField, priceField, submitButton);
+        FlightFormController controller = new FlightFormController(destinationField, flightDatePicker, numSeatsField, priceField, submitButton, deleteButton, idField);
     }
 
     public static void main(String[] args) {

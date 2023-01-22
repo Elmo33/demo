@@ -11,16 +11,22 @@ public class FlightFormController {
     private TextField numSeatsField;
     private TextField priceField;
     private Button submitButton;
+
+    private TextField idField;
+    private Button deleteButton;
     private MySQLDatabase db;
 
-    public FlightFormController(TextField destinationField, DatePicker flightDatePicker, TextField numSeatsField, TextField priceField, Button submitButton) {
+    public FlightFormController(TextField destinationField, DatePicker flightDatePicker, TextField numSeatsField, TextField priceField, Button submitButton, Button deleteButton, TextField idField) {
         this.destinationField = destinationField;
         this.flightDatePicker = flightDatePicker;
         this.numSeatsField = numSeatsField;
         this.priceField = priceField;
         this.submitButton = submitButton;
+        this.deleteButton = deleteButton;
+        this.idField = idField;
         db = new MySQLDatabase();
         addSubmitButtonEvent();
+        addDeleteButtonEvent();
     }
 
     private void addSubmitButtonEvent() {
@@ -30,6 +36,13 @@ public class FlightFormController {
             int numSeats = Integer.parseInt(numSeatsField.getText());
             int price = Integer.parseInt(priceField.getText());
             db.insertFlight(destination, flightDate, numSeats, price);
+        });
+    }
+
+    private void addDeleteButtonEvent() {
+        deleteButton.setOnAction(event -> {
+            int id = Integer.parseInt(idField.getText());
+            db.deleteFlight(id);
         });
     }
 }
